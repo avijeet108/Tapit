@@ -104,7 +104,7 @@ class _WallpaperState extends State<Wallpaper> {
               child: Center(
                 child: Text(
                   'TapIt to load more',
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  style: TextStyle(fontSize: 19.0, color: Colors.white),
                 ),
               ),
             ),
