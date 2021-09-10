@@ -97,14 +97,20 @@ class _WallpaperState extends State<Wallpaper> {
             onTap: () {
               loadmore();
             },
-            child: Container(
-              height: 60.0,
-              width: double.infinity,
-              color: Colors.indigo,
-              child: Center(
-                child: Text(
-                  'Tapit to load more',
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.indigoAccent,
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                height: 60.0,
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    'Tapit to load more',
+                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  ),
                 ),
               ),
             ),
