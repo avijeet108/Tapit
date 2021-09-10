@@ -31,21 +31,21 @@ class _FullScreenState extends State<FullScreen> {
         title: Text('Tapit'),
         backgroundColor: Colors.black12,
       ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-              child: Container(
-                child: Image.network(
-                  widget.imageurl,
-                  fit: BoxFit.cover,
-                ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(widget.imageurl),
+                fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+          ),
+          Positioned(
+              child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              alignment: Alignment.bottomCenter,
               child: Row(
                 children: [
                   Expanded(
@@ -95,10 +95,79 @@ class _FullScreenState extends State<FullScreen> {
                   ),
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )),
+        ],
       ),
     );
   }
 }
+
+// Container(
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.stretch,
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: [
+//             Expanded(
+//               child: Container(
+//                 child: Image.network(
+//                   widget.imageurl,
+//                   fit: BoxFit.cover,
+//                 ),
+//               ),
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Row(
+//                 children: [
+//                   Expanded(
+//                     child: InkWell(
+//                       onTap: () {
+//                         setwallpaper(1);
+//                       },
+//                       child: Container(
+//                         decoration: BoxDecoration(
+//                           color: Colors.indigoAccent,
+//                           borderRadius: BorderRadius.circular(30.0),
+//                         ),
+//                         height: 50.0,
+//                         child: Center(
+//                           child: Text(
+//                             'Set as Homescreen',
+//                             style:
+//                                 TextStyle(fontSize: 20.0, color: Colors.white),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     width: 5.0,
+//                   ),
+//                   Expanded(
+//                     child: InkWell(
+//                       onTap: () {
+//                         setwallpaper(0);
+//                       },
+//                       child: Container(
+//                         decoration: BoxDecoration(
+//                           color: Colors.indigoAccent,
+//                           borderRadius: BorderRadius.circular(30.0),
+//                         ),
+//                         height: 50.0,
+//                         child: Center(
+//                           child: Text(
+//                             'Set as Lockscreen',
+//                             style:
+//                                 TextStyle(fontSize: 20.0, color: Colors.white),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
