@@ -65,52 +65,46 @@ class _WallpaperState extends State<Wallpaper> {
         backgroundColor: Colors.black12,
         title: Text('Tapit'),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: GridView.builder(
-              itemCount: images.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 2 / 3,
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5),
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FullScreen(
-                                imageurl: images[index]['src']['large2x'],
-                              )));
-                },
-                child: Container(
-                  child: Image.network(
-                    images[index]['src']['medium'],
-                    fit: BoxFit.cover,
-                  ),
+          GridView.builder(
+            itemCount: images.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 2 / 3,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5),
+            itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FullScreen(
+                              imageurl: images[index]['src']['large2x'],
+                            )));
+              },
+              child: Container(
+                child: Image.network(
+                  images[index]['src']['medium'],
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-          InkWell(
-            onTap: () {
-              loadmore();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.indigoAccent,
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                height: 60.0,
-                width: double.infinity,
-                child: Center(
-                  child: Text(
-                    'Tapit to load more',
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
-                  ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.indigoAccent,
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              height: 60.0,
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  'Tapit to load more',
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
                 ),
               ),
             ),
@@ -120,3 +114,57 @@ class _WallpaperState extends State<Wallpaper> {
     );
   }
 }
+
+
+// Column(
+//         children: [
+//           Expanded(
+//             child: GridView.builder(
+//               itemCount: images.length,
+//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                   crossAxisCount: 3,
+//                   childAspectRatio: 2 / 3,
+//                   crossAxisSpacing: 5,
+//                   mainAxisSpacing: 5),
+//               itemBuilder: (context, index) => InkWell(
+//                 onTap: () {
+//                   Navigator.push(
+//                       context,
+//                       MaterialPageRoute(
+//                           builder: (context) => FullScreen(
+//                                 imageurl: images[index]['src']['large2x'],
+//                               )));
+//                 },
+//                 child: Container(
+//                   child: Image.network(
+//                     images[index]['src']['medium'],
+//                     fit: BoxFit.cover,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//           InkWell(
+//             onTap: () {
+//               loadmore();
+//             },
+//             child: Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   color: Colors.indigoAccent,
+//                   borderRadius: BorderRadius.circular(30.0),
+//                 ),
+//                 height: 60.0,
+//                 width: double.infinity,
+//                 child: Center(
+//                   child: Text(
+//                     'Tapit to load more',
+//                     style: TextStyle(fontSize: 20.0, color: Colors.white),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
