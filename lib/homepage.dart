@@ -8,23 +8,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List items = [];
-  String select = "Search Wallpapers";
+  String select = "Search for Wallpaper";
   String val = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Expanded(
-          child: Flexible(
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Tapit',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.yellowAccent,
                     fontSize: 100.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -32,23 +32,48 @@ class _HomeState extends State<Home> {
                 Text(
                   'All in one Wallpaper App',
                   style: TextStyle(
+                    color: Colors.yellowAccent,
                     fontWeight: FontWeight.w900,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
                 SizedBox(
-                  height: 100.0,
+                  height: 50.0,
                 ),
                 TextField(
+                  autocorrect: true,
+                  cursorColor: Colors.white,
+                  cursorHeight: 30.0,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                   ),
                   decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.wallpaper,
+                      color: Colors.white,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.red,
+                        width: 3.0,
+                      ),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.green,
+                        width: 3.0,
+                      ),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    hoverColor: Colors.blue,
                     filled: true,
                     fillColor: Colors.black26,
                     hintText: select,
-                    hintStyle: TextStyle(color: Colors.grey),
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                    ),
                   ),
                   onChanged: (value) {
                     val = value;
@@ -67,33 +92,20 @@ class _HomeState extends State<Home> {
                                 )));
                   },
                   child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.indigoAccent,
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
                     width: double.infinity,
-                    color: Colors.blue,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Icon(Icons.search),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 50.0,
-                ),
-                Flexible(
-                  child: Text(
-                    'Developed by: Kumar Avijeet',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.amberAccent,
-                      fontSize: 12.0,
-                    ),
-                  ),
-                )
               ],
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

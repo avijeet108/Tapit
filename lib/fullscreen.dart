@@ -44,46 +44,57 @@ class _FullScreenState extends State<FullScreen> {
                 ),
               ),
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      setwallpaper(1);
-                    },
-                    child: Container(
-                      height: 50.0,
-                      color: Colors.indigo,
-                      child: Center(
-                        child: Text(
-                          'Set as Homescreen',
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        setwallpaper(1);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.indigoAccent,
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        height: 50.0,
+                        child: Center(
+                          child: Text(
+                            'Set as Homescreen',
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 2.0,
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      setwallpaper(0);
-                    },
-                    child: Container(
-                      height: 50.0,
-                      color: Colors.indigo,
-                      child: Center(
-                        child: Text(
-                          'Set as Lockscreen',
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  SizedBox(
+                    width: 5.0,
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        setwallpaper(0);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.indigoAccent,
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        height: 50.0,
+                        child: Center(
+                          child: Text(
+                            'Set as Lockscreen',
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),
