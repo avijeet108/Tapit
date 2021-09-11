@@ -8,7 +8,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List items = [];
-  String select = "Search for Wallpaper";
+  String select = "Search Wallpaper";
   String val = "";
 
   @override
