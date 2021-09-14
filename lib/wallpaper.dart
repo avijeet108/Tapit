@@ -92,19 +92,28 @@ class _WallpaperState extends State<Wallpaper> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
             alignment: Alignment.bottomCenter,
             child: Container(
-              decoration: BoxDecoration(
-                color: Colors.indigoAccent,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              height: 60.0,
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  'Tapit to load more',
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+              height: 100.0,
+              child: TextButton(
+                onPressed: loadmore,
+                child: Container(
+                  padding: EdgeInsets.all(10.0),
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.indigoAccent,
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    height: 60.0,
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        'Tapit to load more',
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -114,6 +123,26 @@ class _WallpaperState extends State<Wallpaper> {
     );
   }
 }
+
+
+// Container(
+//             padding: EdgeInsets.all(10.0),
+//             alignment: Alignment.bottomCenter,
+//             child: Container(
+//               decoration: BoxDecoration(
+//                 color: Colors.indigoAccent,
+//                 borderRadius: BorderRadius.circular(30.0),
+//               ),
+//               height: 60.0,
+//               width: double.infinity,
+//               child: Center(
+//                 child: Text(
+//                   'Tapit to load more',
+//                   style: TextStyle(fontSize: 20.0, color: Colors.white),
+//                 ),
+//               ),
+//             ),
+//           ),
 
 
 // Column(
