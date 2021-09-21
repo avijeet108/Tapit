@@ -13,6 +13,7 @@ class FullScreen extends StatefulWidget {
 }
 
 class _FullScreenState extends State<FullScreen> {
+  bool isloading = false;
   Future<void> setwallpaper(int x) async {
     int location;
     if (x == 1)
@@ -24,6 +25,12 @@ class _FullScreenState extends State<FullScreen> {
         await WallpaperManager.setWallpaperFromFile(file.path, location);
   }
 
+  change() {
+    setState(() {
+      isloading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,143 +38,76 @@ class _FullScreenState extends State<FullScreen> {
         title: Text('Tapit'),
         backgroundColor: Colors.black12,
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(widget.imageurl),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Positioned(
-              child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        setwallpaper(1);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.indigoAccent,
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        height: 50.0,
-                        child: Center(
-                          child: Text(
-                            'Set as Homescreen',
-                            style:
-                                TextStyle(fontSize: 20.0, color: Colors.white),
-                          ),
-                        ),
-                      ),
+      body: isloading
+          ? Center(child: CircularProgressIndicator())
+          : Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(widget.imageurl),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(
-                    width: 5.0,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        setwallpaper(0);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.indigoAccent,
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        height: 50.0,
-                        child: Center(
-                          child: Text(
-                            'Set as Lockscreen',
-                            style:
-                                TextStyle(fontSize: 20.0, color: Colors.white),
+                ),
+                Positioned(
+                    child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    alignment: Alignment.bottomCenter,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              setwallpaper(1);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.indigoAccent,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              height: 50.0,
+                              child: Center(
+                                child: Text(
+                                  'Set as Homescreen',
+                                  style: TextStyle(
+                                      fontSize: 20.0, color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        SizedBox(
+                          width: 5.0,
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              setwallpaper(0);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.indigoAccent,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              height: 50.0,
+                              child: Center(
+                                child: Text(
+                                  'Set as Lockscreen',
+                                  style: TextStyle(
+                                      fontSize: 20.0, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                )),
+              ],
             ),
-          )),
-        ],
-      ),
     );
   }
 }
-
-// Container(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//           children: [
-//             Expanded(
-//               child: Container(
-//                 child: Image.network(
-//                   widget.imageurl,
-//                   fit: BoxFit.cover,
-//                 ),
-//               ),
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Row(
-//                 children: [
-//                   Expanded(
-//                     child: InkWell(
-//                       onTap: () {
-//                         setwallpaper(1);
-//                       },
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           color: Colors.indigoAccent,
-//                           borderRadius: BorderRadius.circular(30.0),
-//                         ),
-//                         height: 50.0,
-//                         child: Center(
-//                           child: Text(
-//                             'Set as Homescreen',
-//                             style:
-//                                 TextStyle(fontSize: 20.0, color: Colors.white),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                   SizedBox(
-//                     width: 5.0,
-//                   ),
-//                   Expanded(
-//                     child: InkWell(
-//                       onTap: () {
-//                         setwallpaper(0);
-//                       },
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                           color: Colors.indigoAccent,
-//                           borderRadius: BorderRadius.circular(30.0),
-//                         ),
-//                         height: 50.0,
-//                         child: Center(
-//                           child: Text(
-//                             'Set as Lockscreen',
-//                             style:
-//                                 TextStyle(fontSize: 20.0, color: Colors.white),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             )
-//           ],
-//         ),
-//       ),
