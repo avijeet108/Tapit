@@ -71,26 +71,37 @@ class _WallpaperState extends State<Wallpaper> {
         children: [
           isloading
               ? Center(child: CircularProgressIndicator())
-              : GridView.builder(
-                  itemCount: images.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 2 / 3,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5),
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FullScreen(
-                                    imageurl: images[index]['src']['large2x'],
-                                  )));
-                    },
-                    child: Container(
-                      child: Image.network(
-                        images[index]['src']['medium'],
-                        fit: BoxFit.cover,
+              : Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Colors.brown,
+                          Colors.black,
+                        ]),
+                  ),
+                  child: GridView.builder(
+                    itemCount: images.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 2 / 3,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5),
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FullScreen(
+                                      imageurl: images[index]['src']['large2x'],
+                                    )));
+                      },
+                      child: Container(
+                        child: Image.network(
+                          images[index]['src']['medium'],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

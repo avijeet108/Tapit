@@ -44,6 +44,13 @@ class _FullScreenState extends State<FullScreen> {
               children: [
                 Container(
                   decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Colors.brown,
+                          Colors.black,
+                        ]),
                     image: DecorationImage(
                       image: NetworkImage(widget.imageurl),
                       fit: BoxFit.cover,
