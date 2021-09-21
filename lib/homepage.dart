@@ -49,10 +49,6 @@ class _HomeState extends State<Home> {
                     color: Colors.white,
                   ),
                   decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.wallpaper,
-                      color: Colors.white,
-                    ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.red,

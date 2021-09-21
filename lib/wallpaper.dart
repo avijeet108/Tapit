@@ -13,6 +13,7 @@ class Wallpaper extends StatefulWidget {
 }
 
 class _WallpaperState extends State<Wallpaper> {
+  bool isloading = true;
   List images = [];
   int page = 1;
 
@@ -34,6 +35,7 @@ class _WallpaperState extends State<Wallpaper> {
       Map res = jsonDecode(value.body);
       setState(() {
         images = res['photos'];
+        isloading = false;
       });
     });
   }
@@ -67,30 +69,32 @@ class _WallpaperState extends State<Wallpaper> {
       ),
       body: Stack(
         children: [
-          GridView.builder(
-            itemCount: images.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 2 / 3,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5),
-            itemBuilder: (context, index) => InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FullScreen(
-                              imageurl: images[index]['src']['large2x'],
-                            )));
-              },
-              child: Container(
-                child: Image.network(
-                  images[index]['src']['medium'],
-                  fit: BoxFit.cover,
+          isloading
+              ? Center(child: CircularProgressIndicator())
+              : GridView.builder(
+                  itemCount: images.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 2 / 3,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5),
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FullScreen(
+                                    imageurl: images[index]['src']['large2x'],
+                                  )));
+                    },
+                    child: Container(
+                      child: Image.network(
+                        images[index]['src']['medium'],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
           Container(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -123,77 +127,3 @@ class _WallpaperState extends State<Wallpaper> {
     );
   }
 }
-
-
-// Container(
-//             padding: EdgeInsets.all(10.0),
-//             alignment: Alignment.bottomCenter,
-//             child: Container(
-//               decoration: BoxDecoration(
-//                 color: Colors.indigoAccent,
-//                 borderRadius: BorderRadius.circular(30.0),
-//               ),
-//               height: 60.0,
-//               width: double.infinity,
-//               child: Center(
-//                 child: Text(
-//                   'Tapit to load more',
-//                   style: TextStyle(fontSize: 20.0, color: Colors.white),
-//                 ),
-//               ),
-//             ),
-//           ),
-
-
-// Column(
-//         children: [
-//           Expanded(
-//             child: GridView.builder(
-//               itemCount: images.length,
-//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 3,
-//                   childAspectRatio: 2 / 3,
-//                   crossAxisSpacing: 5,
-//                   mainAxisSpacing: 5),
-//               itemBuilder: (context, index) => InkWell(
-//                 onTap: () {
-//                   Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                           builder: (context) => FullScreen(
-//                                 imageurl: images[index]['src']['large2x'],
-//                               )));
-//                 },
-//                 child: Container(
-//                   child: Image.network(
-//                     images[index]['src']['medium'],
-//                     fit: BoxFit.cover,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           InkWell(
-//             onTap: () {
-//               loadmore();
-//             },
-//             child: Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Container(
-//                 decoration: BoxDecoration(
-//                   color: Colors.indigoAccent,
-//                   borderRadius: BorderRadius.circular(30.0),
-//                 ),
-//                 height: 60.0,
-//                 width: double.infinity,
-//                 child: Center(
-//                   child: Text(
-//                     'Tapit to load more',
-//                     style: TextStyle(fontSize: 20.0, color: Colors.white),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
